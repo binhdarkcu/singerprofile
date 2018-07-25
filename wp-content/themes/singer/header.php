@@ -52,6 +52,7 @@ img.emoji {
 <link rel='stylesheet' id='coloroptions-css'  href='<?php echo get_template_directory_uri(); ?>/js/appointway-pro/assets/css/color/coffee37cb.css' type='text/css' media='all' />
 <link rel='stylesheet' id='appointway-responsive-css'  href='<?php echo get_template_directory_uri(); ?>/js/appointway-pro/assets/css/responsive37cb.css' type='text/css' media='all' />
 <link rel='stylesheet' id='appointway-woocommerce-css'  href='<?php echo get_template_directory_uri(); ?>/js/appointway-pro/assets/css/woocommerce37cb.css' type='text/css' media='all' />
+<link rel='stylesheet' id='appointway-woocommerce-css'  href='<?php echo get_template_directory_uri(); ?>/style.css' type='text/css' media='all' />
 <script type='text/javascript' src='<?php echo get_template_directory_uri(); ?>/js/jqueryb8ff.js'></script>
 <script type='text/javascript' src='<?php echo get_template_directory_uri(); ?>/js/jquery-migrate.min330a.js'></script>
 <script type='text/javascript' src='<?php echo get_template_directory_uri(); ?>/js/inkappointmentpro/ink-admin/js/cal-front/jquery-ui37cb.js'></script>
@@ -88,11 +89,31 @@ var script_call = {"ajaxurl":"https:\/\/inkthemes.com\/wptheme\/actor-booking-wo
             <div class="container">
                 <div class="row">
                     <div class="header">
-                        <div class="col-md-8 col-sm-8">
+                        <div class="col-md-3 col-sm-12">
                             <div class="logo">
 
                                     <a href="<?php echo get_home_url(); ?>"><img src="<?php echo get_template_directory_uri(); ?>/images/logoactorbooking.png" alt="Actor Booking WordPress Theme logo"/></a>
                                                                 </div>
+                        </div>
+                        <div class="col-md-5 col-sm-8">
+                          <form class="form-horizontal" action="/action_page.php">
+                            <div class="form-group">
+                              <div class="col-sm-10">
+                                <input type="email" class="form-control" id="email" placeholder="Search">
+                              </div>
+                            </div>
+                            <div class="form-group">
+                              <div class="col-sm-6 col-xs-8">
+                                <select class="form-control" name="">
+                                  <option value="">aaa</option>
+                                  <option value="">bbb</option>
+                                </select>
+                              </div>
+                              <div class="col-sm-4 col-xs-4 text-right">
+                                <button type="submit" class="btn btn-default">Submit</button>
+                              </div>
+                            </div>
+                          </form>
                         </div>
                         <div class="col-md-4 col-sm-4">
                             <div class="call-us">

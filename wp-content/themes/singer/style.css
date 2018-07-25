@@ -13,3 +13,13 @@ Text Domain: twentysixteen
 This theme, like WordPress, is licensed under the GPL.
 Use it to make something cool, have fun, and share what you've learned with others.
 */
+@media only screen and (max-width: 768px) and (min-width: 480px) {
+  body .call-us, .call-us p {
+    position: relative;
+    z-index: 1;
+  }
+}
+.form-horizontal {
+  position: relative;
+  z-index: 2;
+}
