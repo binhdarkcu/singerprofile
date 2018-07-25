@@ -1,9 +1,7 @@
 
 <!DOCTYPE html>
 <html lang="en-US" xmlns="http://www.w3.org/1999/xhtml">
-
-<!-- Mirrored from inkthemes.com/wptheme/actor-booking-wordpress-theme/ by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 23 Jul 2018 14:12:42 GMT -->
-<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<meta http-equiv="content-type" content="text/html;charset=UTF-8" />
 <head>
         <meta charset="UTF-8" />
                 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
