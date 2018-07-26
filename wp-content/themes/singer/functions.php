@@ -122,43 +122,60 @@ add_action('admin_enqueue_scripts', 'admin_style');
 // }
 
 
-function rsci_meta_filter( $meta, $post, $is_update ) {
-    echo '<pre>';
-    print_r($meta);
-    echo '</pre>';
-    $meta_array = array();
-    $repeater_array = array();
-    foreach ($meta as $key => $value) {
-        print_r($key);
-        // カスタムフィールド名が 'textfield' だった時
-        if ($key == 'textfield') {
-        // ACF用のフィールドキーに変換
-            $meta_array['field_52528d5b8ad30'] = $value;
-        // カスタムフィールド名が 'select' だった時
-        } elseif ($key == 'select') {
-        // カンマで分割して配列として登録
-            $meta_array['field_52528dc88ad31'] = preg_split('/,+/', $value);
-        // 繰り返しフィールド用のデータを配列に入れていく処理
-        } elseif ($key == 'text_1') {
-            $repeater_array[0]['repeater_text'] = $value;
-        } elseif ($key == 'text_2') {
-            $repeater_array[1]['repeater_text'] = $value;
-        } elseif ($key == 'text_3') {
-            $repeater_array[2]['repeater_text'] = $value;
-        } elseif ($key == 'num_1') {
-            $repeater_array[0]['repeater_number'] = $value;
-        } elseif ($key == 'num_2') {
-            $repeater_array[1]['repeater_number'] = $value;
-        } elseif ($key == 'num_3') {
-            $repeater_array[2]['repeater_number'] = $value;
-        // ACF以外のメタデータはそのまま通す
-        } else {
-            $meta_array[$key] = $value;
-        }
-    }
-    // 繰り返しフィールドの配列を戻す
-    $meta_array['field_52528dea8ad32'] = $repeater_array;
-    echo '<pre>';  	print_r($meta_array);
-    echo '</pre>';    	return $meta_array;
-}
-add_filter( 'really_simple_csv_importer_save_meta', 'rsci_meta_filter', 10, 3 );
+// function rsci_meta_filter( $meta, $post, $is_update ) {
+//     echo '<pre>';
+//     print_r($meta);
+//     echo '</pre>';
+//     $meta_array = array();
+//     $repeater_array = array();
+//      foreach ($meta as $key => $value) {
+//          if($key=='relationship'){
+//              print_r($value);
+//          }
+//      }
+//     // foreach ($meta as $key => $value) {
+//     //     print_r($key);
+//     //     // カスタムフィールド名が 'textfield' だった時
+//     //     if ($key == 'textfield') {
+//     //     // ACF用のフィールドキーに変換
+//     //         $meta_array['field_52528d5b8ad30'] = $value;
+//     //     // カスタムフィールド名が 'select' だった時
+//     //     } elseif ($key == 'select') {
+//     //     // カンマで分割して配列として登録
+//     //         $meta_array['field_52528dc88ad31'] = preg_split('/,+/', $value);
+//     //     // 繰り返しフィールド用のデータを配列に入れていく処理
+//     //     } elseif ($key == 'text_1') {
+//     //         $repeater_array[0]['repeater_text'] = $value;
+//     //     } elseif ($key == 'text_2') {
+//     //         $repeater_array[1]['repeater_text'] = $value;
+//     //     } elseif ($key == 'text_3') {
+//     //         $repeater_array[2]['repeater_text'] = $value;
+//     //     } elseif ($key == 'num_1') {
+//     //         $repeater_array[0]['repeater_number'] = $value;
+//     //     } elseif ($key == 'num_2') {
+//     //         $repeater_array[1]['repeater_number'] = $value;
+//     //     } elseif ($key == 'num_3') {
+//     //         $repeater_array[2]['repeater_number'] = $value;
+//     //     // ACF以外のメタデータはそのまま通す
+//     //     } else {
+//     //         $meta_array[$key] = $value;
+//     //     }
+//     // }
+//
+//
+//     // 繰り返しフィールドの配列を戻す
+//     echo '<pre>';  	print_r($meta_array);
+//     echo '</pre>';    	return $meta_array;
+// }
+// add_filter( 'really_simple_csv_importer_save_meta', 'rsci_meta_filter', 10, 3 );
+// function really_simple_csv_importer_save_meta_filter( $meta, $post, $is_update ) {
+//
+//     // serialize metadata
+//     $meta_array = array();
+//     if (isset($meta['product_singer'])) $meta_array[] = $meta['product_singer'];
+//     if (isset($meta['_product_singer'])) $meta_array[] = $meta['_product_singer'];
+//     $meta = array( 'meta_key' => $meta_array );
+//     print_r($meta);
+//     return $meta;
+// }
+// add_filter( 'really_simple_csv_importer_save_meta', 'really_simple_csv_importer_save_meta_filter', 10, 3 );
