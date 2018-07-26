@@ -1,5 +1,23 @@
-<?php get_header()?>
-
+<?php /* Template Name: Contact */
+get_header()?>
+<script>
+    jQuery.noConflict();
+    jQuery(document).ready(function () {
+        jQuery("#contactForm").validate();
+    });
+</script>
+<div class="page_heading_container">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="page_heading">
+                    <h1><div id="crumbs"><a href="https://inkthemes.com/wptheme/actor-booking-wordpress-theme">Home</a> » <span class="current">Contact Us</span></div></h1>
+                </div>
+            </div>
+            <div class="clear"></div>
+        </div>
+    </div>
+</div>
 <div class="page_container">
    <div class="container">
       <div class="row">

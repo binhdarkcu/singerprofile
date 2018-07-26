@@ -134,13 +134,18 @@ var script_call = {"ajaxurl":"https:\/\/inkthemes.com\/wptheme\/actor-booking-wo
                     <div class="col-md-12">
                         <div class="menu_bar">
                             <div id="MainNav">
-                                <div id="menu" class="menu-menu-1-container"><ul id="menu-menu-1" class="ddsmoothmenu"><li id="menu-item-101" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home menu-item-101"><a href="index.html">Home</a></li>
-<li id="menu-item-108" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-108"><a href="shop/index.html">Shop</a></li>
-<li id="menu-item-103" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-103"><a href="blog/index.html">Blog</a></li>
-<li id="menu-item-106" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-106"><a href="gallery/index.html">Gallery</a></li>
-<li id="menu-item-102" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-102"><a href="about-us/index.html">About Us</a></li>
-<li id="menu-item-105" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-105"><a href="contact-us/index.html">Contact Us</a></li>
-</ul></div>                            </div>
+                                <div id="menu" class="menu-menu-1-container">
+                                  <!--START: FRAME_CATEGORY-->
+                                    <?php
+                                    $nav = array (
+                                        'theme_location'  => 'primary_menus',
+                                        'menu_class'      => 'ddsmoothmenu',
+                                        'container_id' => 'menu-menu-1'
+                                    );
+                                    wp_nav_menu( $nav );?>
+                                    <!--END: FRAME_CATEGORY-->
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

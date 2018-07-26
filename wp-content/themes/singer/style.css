@@ -23,3 +23,9 @@ Use it to make something cool, have fun, and share what you've learned with othe
   position: relative;
   z-index: 2;
 }
+@media (min-width: 768px) {
+  .row-service {
+    display: flex;
+    flex-flow: row wrap;
+  }
+}
