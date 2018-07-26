@@ -66,7 +66,7 @@
                                   ?>
                                   <div class="col-md-4 col-sm-4">
                                     <div class="featurebox_desc">
-                                      <span class="feature-title"><a href="shop/index.html">Artists</a></span>
+                                      <span class="feature-title"><?php echo the_title() ?></span>
                                       <div class="feature-img-section">
                                         <a href="shop/index.html">
                                           <span class="overlay" ></span>
