@@ -107,6 +107,9 @@ function admin_style() {
 }
 add_action('admin_enqueue_scripts', 'admin_style');
 
+//paging ajax for homeland
+include 'inc/page_nav.php';
+
 // add_action( 'manage_posts_custom_column' , 'rating_columns' );
 //
 // function rating_columns( $column ) {

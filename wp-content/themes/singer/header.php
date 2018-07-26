@@ -76,21 +76,11 @@ var script_call = {"ajaxurl":"https:\/\/inkthemes.com\/wptheme\/actor-booking-wo
                                                                 </div>
                         </div>
                         <div class="col-md-5 col-sm-8">
-                          <form class="form-horizontal" action="/action_page.php">
+                          <form class="form-horizontal searchForm" action="/action_page.php">
                             <div class="form-group">
-                              <div class="col-sm-10">
-                                <input type="email" class="form-control" id="email" placeholder="Search">
-                              </div>
-                            </div>
-                            <div class="form-group">
-                              <div class="col-sm-6 col-xs-8">
-                                <select class="form-control" name="">
-                                  <option value="">aaa</option>
-                                  <option value="">bbb</option>
-                                </select>
-                              </div>
-                              <div class="col-sm-4 col-xs-4 text-right">
-                                <button type="submit" class="btn btn-default">Submit</button>
+                              <div class="col-sm-12">
+                                <input type="text" autocomplete="off" class="form-control" id="email" placeholder="Tên bài hát, ca sĩ,...">
+                                <button type="submit" class="btn btn-default">Tìm kiếm</button>
                               </div>
                             </div>
                           </form>

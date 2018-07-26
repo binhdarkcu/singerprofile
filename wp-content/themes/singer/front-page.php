@@ -45,7 +45,7 @@
                           </div>
                         </div>
                         <div class="featurebox">
-                          <span class="feature-heading">Services</span>
+                          <span class="feature-heading">Các ca sĩ nổi bật</span>
                           <div class="featurebox_wrapper">
                             <div class="row">
                               <div class="col-md-12 col-sm-12">
@@ -68,7 +68,7 @@
                                     <div class="featurebox_desc">
                                       <span class="feature-title"><?php echo the_title() ?></span>
                                       <div class="feature-img-section">
-                                        <a href="shop/index.html">
+                                        <a href="<?php echo get_permalink() ?>">
                                           <span class="overlay" ></span>
                                           <img src="<?php echo $feature_image_meta[0] ?>" alt="first-feature-image"/>
                                         </a>

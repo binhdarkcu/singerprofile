@@ -899,6 +899,52 @@ html[xmlns] .slides {
     border-top:1px solid #d9d9d9;
     padding-top: 22px;
 }
+.social-sharing.ss-social-sharing .ss-button-facebook{
+	text-indent: -9999px;
+
+}
+/* Center the pagination */
+.wp-pagenavi { text-align:center; }
+
+/* Add a border */
+.wp-pagenavi span, .wp-pagenavi a, .wp-pagenavi :last-child {
+    border: 1px solid #bbb !important;
+    padding: 6px 12px;
+    margin: 0;
+}
+.wp-pagenavi span, .wp-pagenavi a { border-right: none !important; }
+
+/* Style the default text */
+.wp-pagenavi span, .wp-pagenavi a {
+    font-weight: bold !important;
+    color: #999 !important
+}
+
+/* Style the current / hovered page link */
+.wp-pagenavi span.current,
+.wp-pagenavi a:hover {
+    color: #666 !important;
+    background-color: #ddd !important;
+}
+
+/* Style the page count text */
+.wp-pagenavi :first-child { color: #666 !important; }
+
+/* Add text to the "next" link */
+.wp-pagenavi .nextpostslink:before { content: 'Next '; }
+.wp-pagenavi .previouspostslink:after { content: ' Prev'; }
+.relatedSinger li{
+    float: left;
+    margin-bottom: 20px;
+    margin-right: 15px;
+    list-style-type: none;
+    width: 22%;
+    min-height: 205px;
+}
+.relatedSinger li h2{
+    font-size: 15px;
+    margin-bottom: 5px;
+}
 .featurebox .feature-heading{
     margin-bottom: 12px;
     max-width: 86%;
@@ -951,6 +997,10 @@ html[xmlns] .slides {
     width:100%;
     border-top:1px solid #d9d9d9;
 }
+.sidebar ul.product_list_widget li {
+    margin-bottom: 5px!important;
+padding-bottom: 5px!important;
+}
 .featurebox .featurebox_desc p{
     margin-bottom:20px;
 }
@@ -987,6 +1037,11 @@ html[xmlns] .slides {
 #commentform .form-submit #submit:hover{
     background: #6FA136;
     box-shadow: 0 3px 0 #6FA136;
+}
+.searchForm input[type="text"]{
+    width: 75%;
+    float: left;
+    margin-right: 10px;
 }
 /*.featurebox .featurebox_desc a.readmore:hover{
     width: 110px;

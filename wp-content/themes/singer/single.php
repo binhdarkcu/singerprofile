@@ -5,7 +5,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="page_heading">
-                    <h1><div id="crumbs"><a href="<?php echo get_home_url(); ?>">Home</a> &raquo; <span class="current">Product</span></div>                    </h1>
+                    <h1><div id="crumbs"><a href="<?php echo get_home_url(); ?>">Trang chủ</a> &raquo; <span class="current">Ca sĩ</span></div>                    </h1>
                 </div>
             </div>
         </div>
@@ -20,13 +20,6 @@
                 <div class="col-md-8 col-sm-12">
                     <div class="content_bar">
                         <h1>Aamir Khan</h1>
-
-
-				<h1 class="page-title">Shop</h1>
-
-
-
-
 				<p class="woocommerce-result-count">
 	Showing all 12 results</p>
 <form class="woocommerce-ordering" method="get">

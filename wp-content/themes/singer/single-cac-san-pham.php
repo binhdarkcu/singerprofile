@@ -10,7 +10,7 @@ while ( have_posts() ) : the_post();
         <div class="row">
             <div class="col-md-12">
                 <div class="page_heading">
-                    <h1><div id="crumbs"><a href="<?php echo get_home_url(); ?>">Trang chủ</a> &raquo; <a href="<?php echo get_home_url(); ?>/ca-si">Ca sĩ</a> &raquo; <span class="current">Adam Busch</span></div>                    </h1>
+                    <h1><div id="crumbs"><a href="<?php echo get_home_url(); ?>">Trang chủ</a>  &raquo; <span class="current"><?php the_title();?></span></div>                    </h1>
                 </div>
             </div>
         </div>
@@ -31,12 +31,15 @@ while ( have_posts() ) : the_post();
 
                     	<div class="woocommerce-product-gallery woocommerce-product-gallery--with-images woocommerce-product-gallery--columns-4 images" data-columns="4" style="">
                     	<figure class="woocommerce-product-gallery__wrapper">
-                    		<img src="<?php the_post_thumbnail_url( 'large' ); ?> " />
+                    		<iframe src="<?php echo get_field('product_videos', get_the_ID())?>" width="620" height="350" frameborder="0" allowfullscreen allow="autoplay"></iframe>
                         </figure>
                     </div>
+                    <?php
+                        $singer = get_field('product_singer', get_the_ID())[0];
+                    ?>
 
                     	<div class="summary entry-summary">
-                    		<h1 class="product_title entry-title">Tiểu sử</h1><p class="price"></p>
+                    		<h1 class="product_title entry-title" style="font-size: 14px;">Sản phẩm của <a href="<?php echo get_the_permalink($singer->ID)?>"><?php echo $singer->post_title;?></a></h1><p class="price"></p>
                             <div class="woocommerce-product-details__short-description">
                                 <?php the_content();?>
                                 <div class="sharethis-inline-share-buttons"></div>
@@ -51,10 +54,11 @@ while ( have_posts() ) : the_post();
                                     'meta_query' => array(
                                             array(
                                                    'key' => 'product_singer',
-                                                   'value' => ':"'.get_the_ID().'";',
+                                                   'value' => ':"'.$singer->ID.'";',
                                                    'compare' => 'LIKE'
                                             )
-                                     )
+                                     ),
+                                     'orderby' => 'rand',
                                 );
                                 $products = new WP_Query($args);
                                     if ( $products->have_posts() ) {
@@ -102,6 +106,7 @@ while ( have_posts() ) : the_post();
                     <img width="150"  src="<?php echo $feature_image_meta[0] ?>" class="attachment-shop_catalog size-shop_catalog wp-post-image" alt="product" />
                     <h2 class="woocommerce-loop-product__title"><?php echo the_title() ?></h2>
                 </a>
+                <a rel="nofollow" href="<?php echo get_permalink() ?>" data-quantity="1" data-product_id="132" data-product_sku="" class="button product_type_simple ajax_add_to_cart">Xêm thêm</a>
             </li>
             <?php endwhile;
               } else {

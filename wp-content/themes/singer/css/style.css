@@ -7,6 +7,10 @@
 	width: 100%;
 	height: 250px;
 }
+.social-sharing .ss-social-sharing .ss-button-facebook{
+	text-indent: -9999px;
+
+}
 body {
 	background: #000000;
 }
@@ -226,7 +230,7 @@ header .navbar-default .navbar-toggle .icon-bar {
 	list-style-type: none;
 }
 
-@media only screen and (min-width: 768px) and (max-width: 1024px) { 
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
 	.navbar-nav {
 		margin-top: 17px;
 		    float: right;
@@ -238,7 +242,7 @@ header .navbar-default .navbar-toggle .icon-bar {
 		padding-right: 0;
 	}
 }
-@media only screen and (min-width: 0) and (max-width: 767px) { 
+@media only screen and (min-width: 0) and (max-width: 767px) {
 	.googleapp .col-xs-12 {
 		width: 50%;
 	}
