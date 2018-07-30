@@ -8,10 +8,6 @@
         <link rel="pingback" href="xmlrpc.php" />
         <title>Actor Booking WordPress Theme &#8211; Just another Demo Theme Sites site</title>
 <meta name='robots' content='noindex,follow' />
-<link rel='dns-prefetch' href='http://inkthemes.com/' />
-<link rel='dns-prefetch' href='http://ajax.aspnetcdn.com/' />
-<link rel='dns-prefetch' href='http://www.google.com/' />
-<link rel='dns-prefetch' href='http://fonts.googleapis.com/' />
 
 <link rel='stylesheet' id='cal-css-ui-css'  href='<?php echo get_template_directory_uri(); ?>/js/inkappointmentpro/ink-admin/js/cal-front/jquery-ui37cb.css' type='text/css' media='all' />
 <link rel='stylesheet' id='ink-form-css-css'  href='<?php echo get_template_directory_uri(); ?>/js/inkappointmentpro/ink-admin/css/ink-form37cb.css' type='text/css' media='all' />
@@ -36,14 +32,8 @@
 <script type='text/javascript' src='<?php echo get_template_directory_uri(); ?>/js/jqueryb8ff.js'></script>
 <script type='text/javascript' src='<?php echo get_template_directory_uri(); ?>/js/jquery-migrate.min330a.js'></script>
 <script type='text/javascript' src='<?php echo get_template_directory_uri(); ?>/js/inkappointmentpro/ink-admin/js/cal-front/jquery-ui37cb.js'></script>
-<script type='text/javascript' src='https://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min37cb.js'></script>
 <script type='text/javascript' src='<?php echo get_template_directory_uri(); ?>/js/inkappointmentpro/ink-admin/js/form-validation37cb.js'></script>
-<script type='text/javascript' src='https://google.com/recaptcha/api37cb.js'></script>
-<script type='text/javascript'>
-/* <![CDATA[ */
-var script_call = {"ajaxurl":"https:\/\/inkthemes.com\/wptheme\/actor-booking-wordpress-theme\/wp-admin\/admin-ajax.php"};
-/* ]]> */
-</script>
+
 <script type='text/javascript' src='<?php echo get_template_directory_uri(); ?>/js/inkappointmentpro/ink-admin/js/ink-apt-ajax37cb.js'></script>
 <script type='text/javascript' src='<?php echo get_template_directory_uri(); ?>/js/appointway-pro/assets/js/ddsmoothmenu37cb.js'></script>
 <script type='text/javascript' src='<?php echo get_template_directory_uri(); ?>/js/appointway-pro/assets/js/jquery.flexslider-min37cb.js'></script>
@@ -52,6 +42,11 @@ var script_call = {"ajaxurl":"https:\/\/inkthemes.com\/wptheme\/actor-booking-wo
 <script type='text/javascript' src='<?php echo get_template_directory_uri(); ?>/js/appointway-pro/assets/js/custom37cb.js'></script>
 <script type='text/javascript' src='<?php echo get_template_directory_uri(); ?>/js/appointway-pro/assets/js/dropkick37cb.js'></script>
 <script type='text/javascript' src='<?php echo get_template_directory_uri(); ?>/js/appointway-pro/assets/js/jquery.maskedinput-1.2.237cb.js'></script>
+<script type='text/javascript' src='<?php echo get_template_directory_uri(); ?>/js/jquery.auto-complete.js'></script>
+<script>
+var homeUrl = <?php echo get_home_url();?>;
+</script>
+
 <meta name="generator" content="WordPress 4.9.7" />
 <meta name="generator" content="WooCommerce 3.2.6" />
 <!-- <meta name="NextGEN" version="2.2.33" /> -->
@@ -63,7 +58,10 @@ var script_call = {"ajaxurl":"https:\/\/inkthemes.com\/wptheme\/actor-booking-wo
 <link rel='stylesheet' id='fancybox-0-css'  href='<?php echo get_template_directory_uri(); ?>/js/nextgen-gallery/products/photocrati_nextgen/modules/lightbox/static/fancybox/jquery.fancybox-1.3.4.min4b85.css' type='text/css' media='all' />
 <link rel='stylesheet' id='fontawesome-css'  href='<?php echo get_template_directory_uri(); ?>/js/nextgen-gallery/products/photocrati_nextgen/modules/nextgen_gallery_display/static/fontawesome/font-awesome.min1c9b.css' type='text/css' media='all' />
 <link rel='stylesheet' id='nextgen_pagination_style-css'  href='<?php echo get_template_directory_uri(); ?>/js/nextgen-gallery/products/photocrati_nextgen/modules/nextgen_pagination/static/style.min4b85.css' type='text/css' media='all' />
+<link rel='stylesheet' id='nextgen_pagination_style-css'  href='https://cdnjs.cloudflare.com/ajax/libs/jquery-autocomplete/1.0.7/jquery.auto-complete.css' type='text/css' media='all' />
 </head>
+    <input type="hidden" value="<?php echo admin_url( 'admin-ajax.php' )?>" class="ajax_url"/>
+    <input type="hidden" value="<?php echo get_home_url();?>" class="home_url"/>
     <body class="home blog">
         <div class="header_container">
             <div class="container">
@@ -76,14 +74,7 @@ var script_call = {"ajaxurl":"https:\/\/inkthemes.com\/wptheme\/actor-booking-wo
                                                                 </div>
                         </div>
                         <div class="col-md-5 col-sm-8">
-                          <form class="form-horizontal searchForm" action="/action_page.php">
-                            <div class="form-group">
-                              <div class="col-sm-12">
-                                <input type="text" autocomplete="off" class="form-control" id="email" placeholder="Tên bài hát, ca sĩ,...">
-                                <button type="submit" class="btn btn-default">Tìm kiếm</button>
-                              </div>
-                            </div>
-                          </form>
+                          <?php get_search_form();?>
                         </div>
                         <div class="col-md-4 col-sm-4">
                             <div class="call-us">
@@ -108,14 +99,24 @@ var script_call = {"ajaxurl":"https:\/\/inkthemes.com\/wptheme\/actor-booking-wo
                             <div id="MainNav">
                                 <div id="menu" class="menu-menu-1-container">
                                   <!--START: FRAME_CATEGORY-->
+                                  <ul class="ddsmoothmenu">
                                     <?php
-                                    $nav = array (
-                                        'theme_location'  => 'primary_menus',
-                                        'menu_class'      => 'ddsmoothmenu',
-                                        'container_id' => 'menu-menu-1'
-                                    );
-                                    wp_nav_menu( $nav );?>
+                                    // $nav = array (
+                                    //     'theme_location'  => 'primary_menus',
+                                    //     'menu_class'      => 'ddsmoothmenu',
+                                    //     'container_id' => 'menu-menu-1'
+                                    // );
+                                    // wp_nav_menu( $nav );
+                                    foreach (range('A', 'Z') as $char) {
+                                    ?>
+                                    <li>
+                                        <a href="<?php echo get_home_url(); ?>/?s=<?php echo $char;?>"><?php echo $char;?></a>
+                                    </li>
+                                    <?php
+                                    }
+                                    ?>
                                     <!--END: FRAME_CATEGORY-->
+                                </ul>
                                 </div>
                             </div>
                         </div>
@@ -124,3 +125,4 @@ var script_call = {"ajaxurl":"https:\/\/inkthemes.com\/wptheme\/actor-booking-wo
                 <div class="clear"></div>
             </div>
         </div>
+<script type='text/javascript' src='<?php echo get_template_directory_uri(); ?>/js/global.min.js'></script>

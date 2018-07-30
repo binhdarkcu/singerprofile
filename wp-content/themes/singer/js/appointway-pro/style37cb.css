@@ -905,19 +905,52 @@ html[xmlns] .slides {
 }
 /* Center the pagination */
 .wp-pagenavi { text-align:center; }
-
-/* Add a border */
-.wp-pagenavi span, .wp-pagenavi a, .wp-pagenavi :last-child {
-    border: 1px solid #bbb !important;
-    padding: 6px 12px;
-    margin: 0;
+.wp-pagenavi {
+	padding: 10px 20px 10px;
+	display:block;
+	clear:both;
 }
-.wp-pagenavi span, .wp-pagenavi a { border-right: none !important; }
+.wp-pagenavi span.pages {
 
-/* Style the default text */
-.wp-pagenavi span, .wp-pagenavi a {
-    font-weight: bold !important;
-    color: #999 !important
+}
+.playPopup {
+    position: fixed;
+    bottom: 0;
+    width: 50%;
+    z-index: 1000;
+}
+.playPopup iframe {
+    width: 100%;
+}
+.entry-summary .excerpt {
+
+}
+.entry-summary .loadContent {
+    display: none;
+}
+.wp-pagenavi a , .wp-pagenavi span.extend {
+		color:#fff !important;
+		border:solid 1px #000000 !important;
+		padding:6px 9px 6px 9px !important;
+		margin-right:3px !important;
+		text-decoration:none !important;
+		font-size:12px !important;
+		background:#797979 !important;
+}
+.wp-pagenavi a:hover {
+		color:#fff !important;
+		border-color:#202020 !important;
+		background:#585858 !important;
+}
+ .wp-pagenavi span.current{
+		padding:6px 9px 6px 9px !important;
+		border:solid 1px #202020 !important;
+		color:#fff !important;
+		margin-right:3px !important;
+		background:#585858 !important;
+}
+.pagenavi .wp-pagenavi span.pages{
+    display: block;
 }
 
 /* Style the current / hovered page link */

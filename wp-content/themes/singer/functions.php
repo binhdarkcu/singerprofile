@@ -9,6 +9,7 @@ define('SLOGAN', get_bloginfo('description'));
 add_theme_support('post-thumbnails',array('post','page', 'banner_slider', 'expertise', 'our_team', 'cac-san-pham'));
 
 
+
 //register menu
 function register_menu() {
     register_nav_menus( array(
@@ -37,6 +38,8 @@ add_action( 'init', 'register_menu' );
 //     'parent_slug' => 'theme-general-settings',
 //      ));
 // }
+
+
 function get_id_by_slug($page_slug, $slug_page_type = 'page') {
 
   $find_page = get_page_by_path($page_slug, OBJECT, $slug_page_type);
@@ -110,75 +113,36 @@ add_action('admin_enqueue_scripts', 'admin_style');
 //paging ajax for homeland
 include 'inc/page_nav.php';
 
-// add_action( 'manage_posts_custom_column' , 'rating_columns' );
-//
-// function rating_columns( $column ) {
-//     global $post;
-//
-//     switch ( $column ) {
-//         case 'profile_birthday':
-//             $metaData = get_post_meta( $post->ID, 'Ngày sinh', true );
-//
-//             echo $metaData;
-//         break;
-//     }
-// }
+function ja_global_enqueues() {
+	wp_enqueue_style(
+		'jquery-auto-complete',
+		'https://cdnjs.cloudflare.com/ajax/libs/jquery-autocomplete/1.0.7/jquery.auto-complete.css',
+		array(),
+		'1.0.7'
+	);
 
-
-// function rsci_meta_filter( $meta, $post, $is_update ) {
-//     echo '<pre>';
-//     print_r($meta);
-//     echo '</pre>';
-//     $meta_array = array();
-//     $repeater_array = array();
-//      foreach ($meta as $key => $value) {
-//          if($key=='relationship'){
-//              print_r($value);
-//          }
-//      }
-//     // foreach ($meta as $key => $value) {
-//     //     print_r($key);
-//     //     // カスタムフィールド名が 'textfield' だった時
-//     //     if ($key == 'textfield') {
-//     //     // ACF用のフィールドキーに変換
-//     //         $meta_array['field_52528d5b8ad30'] = $value;
-//     //     // カスタムフィールド名が 'select' だった時
-//     //     } elseif ($key == 'select') {
-//     //     // カンマで分割して配列として登録
-//     //         $meta_array['field_52528dc88ad31'] = preg_split('/,+/', $value);
-//     //     // 繰り返しフィールド用のデータを配列に入れていく処理
-//     //     } elseif ($key == 'text_1') {
-//     //         $repeater_array[0]['repeater_text'] = $value;
-//     //     } elseif ($key == 'text_2') {
-//     //         $repeater_array[1]['repeater_text'] = $value;
-//     //     } elseif ($key == 'text_3') {
-//     //         $repeater_array[2]['repeater_text'] = $value;
-//     //     } elseif ($key == 'num_1') {
-//     //         $repeater_array[0]['repeater_number'] = $value;
-//     //     } elseif ($key == 'num_2') {
-//     //         $repeater_array[1]['repeater_number'] = $value;
-//     //     } elseif ($key == 'num_3') {
-//     //         $repeater_array[2]['repeater_number'] = $value;
-//     //     // ACF以外のメタデータはそのまま通す
-//     //     } else {
-//     //         $meta_array[$key] = $value;
-//     //     }
-//     // }
-//
-//
-//     // 繰り返しフィールドの配列を戻す
-//     echo '<pre>';  	print_r($meta_array);
-//     echo '</pre>';    	return $meta_array;
-// }
-// add_filter( 'really_simple_csv_importer_save_meta', 'rsci_meta_filter', 10, 3 );
-// function really_simple_csv_importer_save_meta_filter( $meta, $post, $is_update ) {
-//
-//     // serialize metadata
-//     $meta_array = array();
-//     if (isset($meta['product_singer'])) $meta_array[] = $meta['product_singer'];
-//     if (isset($meta['_product_singer'])) $meta_array[] = $meta['_product_singer'];
-//     $meta = array( 'meta_key' => $meta_array );
-//     print_r($meta);
-//     return $meta;
-// }
-// add_filter( 'really_simple_csv_importer_save_meta', 'really_simple_csv_importer_save_meta_filter', 10, 3 );
+}
+add_action( 'wp_enqueue_scripts', 'ja_global_enqueues' );
+/**
+ * Live autocomplete search feature.
+ *
+ * @since 1.0.0
+ */
+function ja_ajax_search() {
+	$results = new WP_Query( array(
+		'post_type'     => array( 'post', 'cac-san-pham' ),
+		'post_status'   => 'publish',
+		'nopaging'      => true,
+		'posts_per_page'=> 100,
+		's'             => stripslashes( $_POST['search'] ),
+	) );
+	$items = array();
+	if ( !empty( $results->posts ) ) {
+		foreach ( $results->posts as $key => $result ) {
+			$items[] = [$result->post_title, $result->post_name, $result->post_type];
+		}
+	}
+	wp_send_json_success( $items );
+}
+add_action( 'wp_ajax_search_site',        'ja_ajax_search' );
+add_action( 'wp_ajax_nopriv_search_site', 'ja_ajax_search' );

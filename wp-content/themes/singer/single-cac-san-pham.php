@@ -31,7 +31,11 @@ while ( have_posts() ) : the_post();
 
                     	<div class="woocommerce-product-gallery woocommerce-product-gallery--with-images woocommerce-product-gallery--columns-4 images" data-columns="4" style="">
                     	<figure class="woocommerce-product-gallery__wrapper">
-                    		<iframe src="<?php echo get_field('product_videos', get_the_ID())?>" width="620" height="350" frameborder="0" allowfullscreen allow="autoplay"></iframe>
+                            <?php
+                                $urlPRoduct = get_field('product_videos', get_the_ID());
+                                $urlSplit = explode('.', $urlPRoduct);
+                            ?>
+                    		<iframe src="https://www.nhaccuatui.com/mh/auto/<?php echo $urlSplit[3]?>" width="620" height="350" frameborder="0" allowfullscreen allow="autoplay"></iframe>
                         </figure>
                     </div>
                     <?php
@@ -50,7 +54,7 @@ while ( have_posts() ) : the_post();
 
                                 $args = array(
                                     'post_type' => 'cac-san-pham',
-                                    'posts_per_page' => 15,
+                                    'posts_per_page' => 30,
                                     'meta_query' => array(
                                             array(
                                                    'key' => 'product_singer',

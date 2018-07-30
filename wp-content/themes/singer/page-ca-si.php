@@ -19,40 +19,50 @@
             <div class="page_content">
                 <div class="col-md-8 col-sm-12">
                     <div class="content_bar">
-                        <h1>Aamir Khan</h1>
-                        <?php $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;?>
+                        <h1>Các ca sỉ</h1>
         				<ul class="relatedSinger">
-
-
-
                             <?php
-
+                            $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
                             $related_args = array(
                                 'post_type' => 'post',
                                 'posts_per_page' => 32,
                                 'post_status' => 'publish',
                                 'paged' => $paged
                             );
-                            $relatedPosts = get_posts( $related_args );
-                            foreach ($relatedPosts as $key => $casi) {
-                                $feature_image_id = get_post_thumbnail_id($casi->ID);
-                                 $feature_image_meta = wp_get_attachment_image_src($feature_image_id, 'thumbnail');
+                            $relatedPosts = new WP_Query( $related_args );
+                            if ( $relatedPosts->have_posts() ) :
+                                while ( $relatedPosts->have_posts() ) : $relatedPosts->the_post();
+                            // $relatedPosts = get_posts( $related_args );
+                            // foreach ($relatedPosts as $key => $casi) {
+                                 $feature_image_id = get_post_thumbnail_id(get_the_ID());
+                                  $feature_image_meta = wp_get_attachment_image_src($feature_image_id, 'thumbnail');
                             ?>
                             <li class="post-132 product type-product status-publish has-post-thumbnail product_cat-tv-star first instock shipping-taxable product-type-simple">
-                                <a href="<?php echo get_the_permalink($casi->ID) ?>" class="woocommerce-LoopProduct-link woocommerce-loop-product__link">
+                                <a href="<?php echo get_the_permalink(get_the_ID()) ?>" class="woocommerce-LoopProduct-link woocommerce-loop-product__link">
                                     <img width="150"  src="<?php echo $feature_image_meta[0] ?>" class="attachment-shop_catalog size-shop_catalog wp-post-image" alt="product" />
-                                    <h2 class="woocommerce-loop-product__title"><?php echo get_the_title($casi->ID) ?></h2>
+                                    <h2 class="woocommerce-loop-product__title"><?php echo get_the_title(get_the_ID()) ?></h2>
                                 </a>
                             </li>
-                        <?php }?>
+                        <?php
+                                endwhile;
+
+
+
+                        endif;
+                        ?>
 
 
 
         				</ul>
-                        <div style="clear: both"></div>
+                        <div style="clear: both;"></div>
                         <div class="paging pagenavi">
   							<div class="paging-normal">
-  								<?php wp_pagenavi() ?>
+  								<?php if(function_exists('wp_pagenavi'))
+                            		{
+                            			wp_pagenavi( array( 'query' => $relatedPosts ) );
+                            		}
+                                    wp_reset_postdata();
+                                ?>
   								<!--div id="pagination">
 
   								</div-->
